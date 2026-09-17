@@ -645,7 +645,7 @@
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                 <div class="card card-custom h-100 p-4 d-flex flex-column justify-content-start text-start">
                     <div class="text-center mb-3">
-                        <div class="stat-number">15,000+</div>
+                        <div class="stat-number"><span class="counter" data-target="15000">0</span>+</div>
                         <div class="stat-label"> Environmental Conservation</div>
                     </div>
                     <p class="stat-desc">
@@ -661,7 +661,7 @@
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <div class="card card-custom h-100 p-4 d-flex flex-column justify-content-start text-start">
                     <div class="text-center mb-3">
-                        <div class="stat-number">100+</div>
+                        <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
                         <div class="stat-label"> Supporting Girls' Education</div>
                     </div>
                     <p class="stat-desc">
@@ -677,7 +677,7 @@
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                 <div class="card card-custom h-100 p-4 d-flex flex-column justify-content-start text-start">
                     <div class="text-center mb-3">
-                        <div class="stat-number">2024</div>
+                        <div class="stat-number"><span class="counterd" data-target="2024">2024</span></div>
                         <div class="stat-label">Advancing Menstrual Health & Hygiene</div>
                     </div>
                     <p class="stat-desc">
@@ -1062,6 +1062,49 @@
                 ride: 'carousel'
             });
             carousel.cycle();
+        });
+
+        // --- NUMBER COUNTER ANIMATION SCRIPT ---
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // Kasi ya kuhesabu (kasi ndogo inakuwa kasi zaidi)
+
+        const startCounting = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            let count = 0;
+            
+            const updateCount = () => {
+                const inc = target / speed;
+                count += inc;
+
+                if (count < target) {
+                    // Kama namba ina desimali au ni kubwa sana tunaweka toFixed(0) na kuweka comma
+                    counter.innerText = Math.ceil(count).toLocaleString();
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = target.toLocaleString();
+                }
+            };
+            updateCount();
+        };
+
+        // Kutumia Intersection Observer kuhakikisha kuhesabu kunaanza pale mtumiaji anapofika kwenye sehemu ya namba
+        const observerOptions = {
+            root: null,
+            threshold: 0.3 // Inaanza pale asilimia 30 ya eneo linapoonekana kwenye skrini
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    startCounting(counter);
+                    observer.unobserve(counter); // Inaacha kufuatilia mara baada ya kuhesabu mara moja
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => {
+            observer.observe(counter);
         });
     });
 
