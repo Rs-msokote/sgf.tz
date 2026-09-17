@@ -971,6 +971,129 @@
             outline-offset: 3px;
             border-radius: 4px;
         }
+
+        /* ===== ADDED: VALUES CARDS ===== */
+        .value-card {
+            background: #ffffff;
+            border: 1px solid rgba(2, 132, 199, 0.1);
+            border-radius: var(--sgf-radius-lg);
+            padding: 28px 18px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--sgf-shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--sgf-gradient-accent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sgf-shadow-lg);
+            border-color: rgba(2, 132, 199, 0.25);
+        }
+
+        .value-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px auto;
+            font-size: 1.5rem;
+            color: #ffffff;
+            background: var(--sgf-gradient-accent);
+            box-shadow: 0 8px 20px -6px rgba(2, 132, 199, 0.4);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.12) rotate(-6deg);
+        }
+
+        .value-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--sgf-navy);
+            margin-bottom: 6px;
+            line-height: 1.35;
+        }
+
+        .value-desc {
+            font-size: 0.8rem;
+            color: var(--sgf-text-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Where We Work box */
+        .where-we-work-box {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.06), rgba(6, 182, 212, 0.04));
+            border: 1px solid rgba(2, 132, 199, 0.15);
+            border-radius: var(--sgf-radius-lg);
+            padding: 30px 36px;
+            max-width: 780px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .where-we-work-box::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(2, 132, 199, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        .where-we-work-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sgf-gradient-blue);
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-bottom: 14px;
+            box-shadow: 0 10px 24px -8px rgba(4, 3, 59, 0.45);
+        }
+
+        .values-heading-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--sgf-gradient-accent);
+            color: #ffffff;
+            font-size: 1.25rem;
+            margin-right: 14px;
+            box-shadow: 0 8px 20px -6px rgba(2, 132, 199, 0.4);
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -1038,20 +1161,23 @@
     </div>
 </header>
 
-<!-- PREAMBLE & ABOUT SECTION -->
+<!-- ============================================================ -->
+<!-- PREAMBLE & ABOUT SECTION (ENHANCED: WHO WE ARE + WHERE WE WORK + VALUES) -->
+<!-- ============================================================ -->
 <section id="about" class="py-5">
     <div class="container py-4">
         <h2 class="text-center section-title" data-aos="fade-up">Who We Are</h2>
         <div class="row align-items-center justify-content-center text-center g-4">
             <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
                 <p class="fs-5 text-secondary mb-3">
-                    <strong>Smile Global Foundation (SGF)</strong> is a registered Tanzanian non-governmental organization committed to
-                     creating positive and sustainable change in communities across Mainland Tanzania. </p>
+                    <strong>Smile Global Foundation (SGF)</strong> was registered in <strong>2024</strong> as a Tanzanian non-governmental organization committed to
+                    creating positive and sustainable change and improving the well-being of communities across Mainland Tanzania.
+                </p>
                 <p class="fs-6 text-muted mx-auto mb-4" style="max-width: 850px;">
                     We work with communities, young people, women and girls, students, government institutions, and development partners to promote education, environmental conservation, empowerment, public health, gender equality, entrepreneurship, and sustainable community development.
                     <br><br>
                     Through partnerships and community-led initiatives, we empower people, protect the environment,
-                     and create opportunities for stronger and more resilient communities.   
+                    and create opportunities for stronger and more resilient communities.   
                 </p>
                 
                 <div class="badge bg-light text-primary border border-primary p-3 rounded-pill fs-6 fw-semibold mb-5" role="alert">
@@ -1060,6 +1186,85 @@
             </div>
         </div>
 
+        <!-- ===== ADDED: WHERE WE WORK ===== -->
+        <div class="row mb-5" data-aos="fade-up" data-aos-delay="150">
+            <div class="col-lg-12">
+                <div class="where-we-work-box text-center">
+                    <div class="where-we-work-icon">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="fw-bold h4 mb-3" style="color: var(--sgf-navy);">Where We Work</h3>
+                    <p class="fs-6 text-muted mb-0" style="max-width: 720px; margin: 0 auto;">
+                        SGF works across all <strong>26 regions of Tanzania Mainland</strong>, addressing local needs and supporting inclusive and sustainable development.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ADDED: OUR VALUES ===== -->
+        <div class="row mb-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="col-lg-12 text-center">
+                <h3 class="fw-bold h4 mb-5 d-inline-flex align-items-center" style="color: var(--sgf-navy);">
+                    <span class="values-heading-icon"><i class="fa-solid fa-gem"></i></span>
+                    Our Values
+                </h3>
+                <p class="text-muted mb-5" style="max-width: 650px; margin: 0 auto;">
+                    The ideals that guide our work include:
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h5 class="value-title">Integrity &amp; Accountability</h5>
+                    <p class="value-desc">We uphold transparency and responsibility in everything we do.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="180">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
+                    <h5 class="value-title">Gender Equity &amp; Inclusion</h5>
+                    <p class="value-desc">We champion equal opportunities for all, regardless of gender or background.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="260">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <h5 class="value-title">Community Empowerment</h5>
+                    <p class="value-desc">We enable communities to lead and drive their own development.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="340">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h5 class="value-title">Environmental Sustainability</h5>
+                    <p class="value-desc">We protect natural resources for present and future generations.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4 mx-auto" data-aos="fade-up" data-aos-delay="420">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h5 class="value-title">Learning &amp; Excellence</h5>
+                    <p class="value-desc">We pursue continuous learning and the highest standards in our work.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISION & MISSION CARDS -->
         <div class="row g-4">
             <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
                 <div class="card card-custom h-100 p-5 text-center">
